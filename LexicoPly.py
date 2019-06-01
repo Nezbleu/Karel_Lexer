@@ -1,18 +1,18 @@
 import lex
 
 reserved = {
-'iniciar-programa' : 'COMANDO_INICIAR'
-, 'finalizar-programa' : 'COMANDO_FINALIZAR'
-, 'inicia-ejecucion' : 'COMANDO_INICIA'
-, 'termina-ejecucion' : 'COMANDO_TERMINA'
-, 'inicia-ejecucion' : 'COMANDO_INICIA'
+'iniciar_programa' : 'COMANDO_INICIAR'
+, 'finalizar_programa' : 'COMANDO_FINALIZAR'
+, 'inicia_ejecucion' : 'COMANDO_INICIA'
+, 'termina_ejecucion' : 'COMANDO_TERMINA'
+, 'inicia_ejecucion' : 'COMANDO_INICIA'
 , 'terminar' : 'COMANDO_TERMINAR'
 , 'avanza' : 'COMANDO_AVANZAR'
-, 'gira-izquierda' : 'COMANDO_GIRAR_IZQ'
-, 'coge-zumbador' : 'COMANDO_COGER_ZUMBADOR'
-, 'deja-zumbador' : 'COMANDO_DEJAR_ZUMBADOR'
+, 'gira_izquierda' : 'COMANDO_GIRAR_IZQ'
+, 'coge_zumbador' : 'COMANDO_COGER_ZUMBADOR'
+, 'deja_zumbador' : 'COMANDO_DEJAR_ZUMBADOR'
 , 'apagate' : 'COMANDO_APAGAR'
-, 'define-nueva-instrucion' : 'SENTENCIA_DEFINE_NUEVA_INSTRUCCION'
+, 'define_nueva_instrucion' : 'SENTENCIA_DEFINE_NUEVA_INSTRUCCION'
 , 'como' : 'SENTENCIA_COMO'
 , 'si' : 'SENTENCIA_SI'
 , 'entonces' : 'SENTENCIA_ENTONCES'
@@ -24,24 +24,24 @@ reserved = {
 , 'y' : 'OPERADOR_Y'
 , 'o' : 'OPERADOR_O'
 , 'no' : 'OPERADOR_NO'
-, 'frente-libre' : 'CONDICION_FRENTE_LIBRE'
-, 'junto-a-zumbador' : 'CONDICION_JUNTO_A_ZUMBADOR'	 
-, 'orientado-al-este' : 'CONDICION_ORIENTADO_AL_ESTE'
-, 'frente-bloqueado' : 'CONDICION_FRENTE_BLOQUEADO'	
-, 'no-junto-a-zumbador' : 'CONDICION_NO_JUNTO_A_ZUMBADOR'
-, 'orientado-al-oeste' : 'CONDICION_ORIENTADO_AL_OESTE'
-, 'izquierda-libre' : 'CONDICION_IZQUIERDA_LIBRE'
-, 'algun-zumbador-en-la-mochila' : 'CONDICION_ALGUN_ZUMBADOR_EN_LA_MOCHILA'
-, 'no-orientado-al-norte' : 'CONDICION_NO_ORIENTADO_AL_NORTE'
-, 'izquierda-bloqueada' : 'CONDICION_IZQUIERDA_BLOQUEADA'
-, 'ningun-zumbador-en-la-mochila' : 	'CONDICION_NINGUN_ZUMBADOR_EN_LA_MOCHILA'
-, 'no-orientado-al-sur' : 'CONDICION_NO_ORIENTADO_AL_SUR'
-, 'derecha-libre' : 	'CONDICION_DERECHA_LIBRE'
-, 'orientado-al-norte' : 'CONDICION_ORIENTADO_AL_NORTE'	
-, 'no-orientado-al-este' : 'CONDICION_NO_ORIENTADO_AL_ESTE'
-, 'derecha-bloqueada' : 'CONDICION_DERECHA_BLOQUEADA'	
-, 'orientado-al-sur' : 'CONDICION_ORIENTADO_AL_SUR'	
-, 'no-orientado-al-oeste' : 'CONDICION_NO_ORIENTADO_AL_OESTE'
+, 'frente_libre' : 'CONDICION_FRENTE_LIBRE'
+, 'junto_a_zumbador' : 'CONDICION_JUNTO_A_ZUMBADOR'	 
+, 'orientado_al_este' : 'CONDICION_ORIENTADO_AL_ESTE'
+, 'frente_bloqueado' : 'CONDICION_FRENTE_BLOQUEADO'	
+, 'no_junto_a_zumbador' : 'CONDICION_NO_JUNTO_A_ZUMBADOR'
+, 'orientado_al_oeste' : 'CONDICION_ORIENTADO_AL_OESTE'
+, 'izquierda_libre' : 'CONDICION_IZQUIERDA_LIBRE'
+, 'algun_zumbador_en_la_mochila' : 'CONDICION_ALGUN_ZUMBADOR_EN_LA_MOCHILA'
+, 'no_orientado_al_norte' : 'CONDICION_NO_ORIENTADO_AL_NORTE'
+, 'izquierda_bloqueada' : 'CONDICION_IZQUIERDA_BLOQUEADA'
+, 'ningun_zumbador_en_la_mochila' : 	'CONDICION_NINGUN_ZUMBADOR_EN_LA_MOCHILA'
+, 'no_orientado_al_sur' : 'CONDICION_NO_ORIENTADO_AL_SUR'
+, 'derecha_libre' : 	'CONDICION_DERECHA_LIBRE'
+, 'orientado_al_norte' : 'CONDICION_ORIENTADO_AL_NORTE'	
+, 'no_orientado_al_este' : 'CONDICION_NO_ORIENTADO_AL_ESTE'
+, 'derecha_bloqueada' : 'CONDICION_DERECHA_BLOQUEADA'	
+, 'orientado_al_sur' : 'CONDICION_ORIENTADO_AL_SUR'	
+, 'no_orientado_al_oeste' : 'CONDICION_NO_ORIENTADO_AL_OESTE'
 , 'verdadero' : 'BOOLEANO_VERDADERO'
 , 'falso' : 'BOOLEANO_FALSO'
 , 'void' : 'DECLARACION_VOID'
@@ -49,7 +49,6 @@ reserved = {
 }
 
 t_ignore = ' \n'
-t_CONECTOR = r'-' #Token temporal, no puedo hacer que lea una palabra con un conector interno --> ej: no-orientado-al-oeste
 t_PUNTUACION_PUNTO_Y_COMA = ';'
 t_PUNTUACION_LLAVES_ABRIR = '{'
 t_PUNTUACION_LLAVES_CERRAR = '}'
@@ -68,7 +67,6 @@ def t_NUMERO(t):
     t.value = int(t.value)
     return t
 
-# Error handling rule
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -76,10 +74,12 @@ def t_error(t):
 def leerArchivo(entrada):
     return open(entrada, "r")
 
-lex.lex() # Build the lexer
-print(reserved.values())
+def remplazar(texto):
+     return texto.replace("-","_")
+
+lex.lex()
 for i in leerArchivo(input("introduzca el nombre del archivo con la extension .txt\n")):
-    lex.input(i)
+    lex.input(remplazar(i))
     while True:
         tok = lex.token()
         if not tok: break
