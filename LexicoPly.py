@@ -48,7 +48,7 @@ reserved = {
 , 'class' : 'DECLARACION_CLASS'
 }
 
-t_ignore = ' \n'
+t_ignore = ' \n | \t'
 t_PUNTUACION_PUNTO_Y_COMA = ';'
 t_PUNTUACION_LLAVES_ABRIR = '{'
 t_PUNTUACION_LLAVES_CERRAR = '}'
@@ -75,7 +75,9 @@ def leerArchivo(entrada):
     return open(entrada, "r")
 
 def remplazar(texto):
-     return texto.replace("-","_")
+     texto = texto.replace("_","_SUBLINE_")
+     texto = texto.replace("-","_")
+     return texto
 
 lex.lex()
 for i in leerArchivo(input("introduzca el nombre del archivo con la extension .txt\n")):
